@@ -1,0 +1,18 @@
+.App_Root {
+    display: flex;
+    display: -webkit-flex; /* fit safari */
+    flex-direction: column;
+    width: 100%;
+}
+
+.App_Content {
+    flex: 1;
+    width: 100%;
+}
+
+.App_Footer {
+    flex: 0 1;
+    width: 100%;
+    flex-basis: 50px;
+    background: black;
+}

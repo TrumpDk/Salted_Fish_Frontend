@@ -1,0 +1,24 @@
+.search_bar_content {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+}
+
+.bar_img_content {
+    flex: 0 1;
+    width: 44px;
+    height: 44px;
+}
+
+.bar_img_content > img {
+    width: 44px;
+    height: 44px;
+}
+
+.bar_search_content {
+    flex: 1;
+}
+
+.am-search {
+    background: transparent!important;
+}
