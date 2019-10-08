@@ -8,6 +8,7 @@ export default ({ body, title}) => {
           <link rel="icon" type="image/png" href="assets/public/img/favicon.ico">
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
           <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+          <script src="https://at.alicdn.com/t/font_1416198_ahu5115sos.js"></script>
         </head>
         
         <body>

@@ -2,10 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-    entry: path.join(__dirname, '/src/index.js'),
+    // polyfill will convert async to generator
+    entry: ["@babel/polyfill", path.join(__dirname, '/src/index.js')],
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -72,7 +72,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new CopyWebpackPlugin([{
             from: './src/assets/public',  // 将此目录下的文件
-            to:'./public'                 // 输出到此目录，相对于output.path目录
+            to: './public'                 // 输出到此目录，相对于output.path目录
         }])
     ],
     devServer: {
@@ -83,6 +83,6 @@ module.exports = {
         https: false,
         open: true,
         historyApiFallback: true,  // when using BrowserRouter "historyApiFallback" should be true.For more details please refer to 
-                                   //https://stackoverflow.com/questions/45263511/getting-404-error-in-react-router-dom
+        //https://stackoverflow.com/questions/45263511/getting-404-error-in-react-router-dom
     }
 };

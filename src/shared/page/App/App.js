@@ -2,7 +2,7 @@ import React from 'react'
 import { ActivityIndicator } from 'antd-mobile'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import Home from '../Home/Home';
-import TabList from '../../component/TabList/TabList';
+import TabList from '../../component/TabList/TabList'
 import './App.scss'
 
 class App extends React.Component {
