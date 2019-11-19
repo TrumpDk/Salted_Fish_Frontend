@@ -1,0 +1,46 @@
+.sign_in_header_img {
+    width: 100%;
+    height: auto;
+}
+
+.sign_in_content {
+    background: white;
+    border-radius: .5rem;
+    margin: 13vw .8rem .8rem .8rem;
+}
+
+.fish_img_container {
+    display: flex;
+}
+
+.fish_img {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto;
+    margin-top: -2.5rem;
+}
+
+.sign_in_main {
+    padding: .4rem .4rem 0 .4rem;
+}
+
+.input_Wrap {
+    height: 2.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #dfdfdf;
+    margin: .8rem 0 .8rem 0;
+}
+
+.input_Wrap>input {
+    display: block;
+    height: 90%;
+    border: none;
+    width: 100%;
+    background: #dfdfdf;
+}
+
+.login_Btn {
+    padding: .4rem .4rem 1.5rem .4rem;
+}

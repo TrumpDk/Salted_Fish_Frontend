@@ -12,9 +12,8 @@
 }
 
 .App_Footer {
-    flex: 0 1;
+    display: flex;
     width: 100%;
-    flex-basis: 50px;
     background: black;
 }
 

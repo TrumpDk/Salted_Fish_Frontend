@@ -1,6 +1,6 @@
 // this is a simple html template for returning a html template to server side
-export default ({ body, title}) => {
-    return `
+export default ({ body, title, state }) => {
+  return `
       <!DOCTYPE html>
       <html>
         <head>
@@ -16,6 +16,9 @@ export default ({ body, title}) => {
         </body>
         
         <script src="/assets/bundle.js"></script>
+        <script type="text/javascript" charset="utf-8">
+          window.__INITIAL_STATE__ = ${state};
+        </script>
       </html>
     `;
-  };
+};

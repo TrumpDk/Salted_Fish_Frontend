@@ -1,5 +1,10 @@
-import { all } from '@redux-saga/core/effects';
+import { combineReducers } from "redux";
+import common from '../reducers/commonReducer'
+import logIn from '../reducers/logInReducer'
 
-export default function* root() {
-    yield all([]);
-}
+const combinedReducers = combineReducers({
+    common,
+    logIn
+});
+
+export default combinedReducers;

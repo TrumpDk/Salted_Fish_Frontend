@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import TabList from '../../component/TabList/TabList'
 import './Home.css'
 import SearchBarCom from '../../component/SearchBar/SearchBar'
 import NavBar from '../../component/NavBar/NavBar'
@@ -15,7 +14,7 @@ class Home extends React.Component {
     async logIn() {
         let obj = {};
         try {
-            obj = await httpService.logIn({ userName: 'brucrTest', password: '12345678' });
+            obj = await httpService.findUserByName('userName=ssss');
         } catch (err) {
             console.log(err);
         }

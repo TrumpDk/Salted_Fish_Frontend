@@ -11,7 +11,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/assets/'
     },
-    target: 'node',
     module: {
         rules: [
             {
@@ -82,7 +81,7 @@ module.exports = {
         port: 3005,
         https: false,
         open: true,
-        historyApiFallback: true,  // when using BrowserRouter "historyApiFallback" should be true.For more details please refer to 
+        historyApiFallback: true,  // while using BrowserRouter "historyApiFallback" should be true.For more details please refer to 
         //https://stackoverflow.com/questions/45263511/getting-404-error-in-react-router-dom
     }
 };
