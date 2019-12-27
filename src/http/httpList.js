@@ -20,4 +20,9 @@ export default class httpService {
      * check log in
      */
     static checkLogIn = params => HttpUtil.get('/checkLogIn', params);
+
+    /**
+     * load init data for home page
+     */
+    static loadCommodityForHome = params => HttpUtil.post('/loadHomeData', params);
 }

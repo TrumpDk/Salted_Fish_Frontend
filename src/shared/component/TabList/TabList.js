@@ -12,6 +12,7 @@ export const TabList = (props) => {
             showTab = item.showTab;
         }
     })
+    console.log('is showTab', showTab);
 
     return (
         showTab ? 

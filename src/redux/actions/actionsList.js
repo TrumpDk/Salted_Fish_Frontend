@@ -21,7 +21,14 @@ const list = {
      */
     Check_LogIn_Start: Symbol(),
     Check_LogIn_Successfull: Symbol(),
-    Check_LogIn_Failed: Symbol()
+    Check_LogIn_Failed: Symbol(),
+
+    /**
+     * home page requests
+     */
+    Home_Data_Request: Symbol(),
+    Home_Data_Request_Failed: Symbol(),
+    Home_Data_Request_Successful: Symbol()
 
 }
 

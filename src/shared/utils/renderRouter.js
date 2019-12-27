@@ -9,7 +9,7 @@ import { Route, Redirect } from 'react-router-dom'
  * @param {*} extraProps 
  * @param {*} switchProps 
  */
-const RenderRoutes = ({ routers: { routers, authed, authPath = '/LogIn' } }) => (
+const RenderRoutes = ({ routers: { routers, authed, authPath = '/Home' } }) => (
     routers.map((route, i) => (
         <Route
             key={route.key || i}

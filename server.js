@@ -20,7 +20,7 @@ import actionList from './src/redux/actions/actionsList';
 const server = express();
 // const baseURL = process.env.NODE_ENV == 'production' ? '139.155.39.75' : 'localhost';
 
-server.use('/assets', express.static(__dirname + '/dist'));
+server.use('/assets', express.static(__dirname + '/dist/public/resource'));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(cookiePaser());
@@ -43,7 +43,7 @@ server.get('*', (req, res) => {
   );
 
   store.runSaga(rootSaga).toPromise().then(() => {
-    console.log('rendertfffffff');
+    console.log('rendertfffffff', store.getState());
     res.status(200).send(template({
       body: renderToString(comToBeRendered),
       title: 'Salted Fish',

@@ -6,7 +6,6 @@ const initState = {
 
 const logInReducer = (state = initState, action) => {
     switch (action.type) {
-
         case ActionList.Log_In_Successful:
             return {
                 ...state,

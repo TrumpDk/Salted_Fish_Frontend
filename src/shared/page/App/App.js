@@ -24,9 +24,9 @@ const tabLists = [
 class App extends React.Component {
 
     // only componentWillMount could trigger saga in server side rendering,but this hook will be removed in future
-    componentWillMount() {
-        this.props.actions.startCheckLogIn();
-    }
+    // componentWillMount() {
+    //     this.props.actions.startCheckLogIn();
+    // }
 
     render() {
         return (

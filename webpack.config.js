@@ -1,14 +1,16 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     // polyfill will convert async to generator
-    entry: ["@babel/polyfill", path.join(__dirname, '/src/index.js')],
+    entry: {
+        bundle: ["@babel/polyfill", path.join(__dirname, '/src/index.js')]
+    },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist/public/resource'),
         publicPath: '/assets/'
     },
     module: {
@@ -24,9 +26,9 @@ module.exports = {
                             "@babel/preset-react"
                         ],
                         plugins: [
-                            "@babel/plugin-proposal-object-rest-spread", //解析对象的扩展运算符（ES2018）
-                            "@babel/plugin-proposal-export-default-from",  //解析额外的export语法:export v from "xx/xx"
-                            "@babel/plugin-proposal-export-namespace-from", //解析额外的export语法:export v as vv from "xx/xx";
+                            "@babel/plugin-proposal-object-rest-spread",
+                            "@babel/plugin-proposal-export-default-from",  //export v from "xx/xx"
+                            "@babel/plugin-proposal-export-namespace-from", //export v as vv from "xx/xx";
                             "@babel/plugin-proposal-class-properties",
                             "@babel/plugin-syntax-dynamic-import"
                         ]
@@ -35,30 +37,45 @@ module.exports = {
 
             },
             {
-                test: /\.css$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
-                    'style-loader',
+                    {
+                        loader: miniCssExtractPlugin.loader,
+                        options: {
+                            sourceMap: true
+                        },
+                    },
                     {
                         loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     }
                 ]
             },
             {
-                test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']  //处理顺序:sass-loader->css-loader->style-loader
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg|ico)$/i,
-                use: 'url-loader?limit=8192'
+                test: /\.(jpe?g|png|gif|ico)$/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'img'
+                    }
+                }]
             },
             {
                 test: /\.(eot|ttf|woff|svg)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 1024 * 30,         //30KB 以下的文件采用 url-loader
-                        fallback: 'file-loader',  //否则采用 file-loader，默认值就是 file-loader
-                        outputPath: 'fonts',      //字体输出路径
+                        limit: 1024 * 30,
+                        fallback: 'file-loader',// if resources can't be resolved by url-loader then use file-loader instead
+                        outputPath: 'font',
                     }
                 }]
             },
@@ -66,22 +83,22 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/client/template.html',  //html模板
+            template: path.join(__dirname, '/src/client/template.html'),
+            filename: path.join(__dirname, '/dist/index.html')
         }),
-        new webpack.HotModuleReplacementPlugin(),
+        new miniCssExtractPlugin({
+            filename: 'css/[name].css',
+            chunkFilename: 'css/[name]@[id].css'
+        }),
         new CopyWebpackPlugin([{
-            from: './src/assets/public',  // 将此目录下的文件
-            to: './public'                 // 输出到此目录，相对于output.path目录
+            from: path.join(__dirname, 'src/assets/public/icon'),  //copy file to dist without importing
+            to: path.join(__dirname, 'dist/public/icon')
         }])
     ],
-    devServer: {
-        hot: true,
-        contentBase: './dist',     //将dist目录下的文件，作为额外可访问文件
-        host: 'localhost',
-        port: 3005,
-        https: false,
-        open: true,
-        historyApiFallback: true,  // while using BrowserRouter "historyApiFallback" should be true.For more details please refer to 
-        //https://stackoverflow.com/questions/45263511/getting-404-error-in-react-router-dom
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 20
+        }
     }
 };
