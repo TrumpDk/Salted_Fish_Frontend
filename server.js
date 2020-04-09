@@ -1,74 +1,61 @@
 import express from 'express';
-import React from 'react';
-import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server';
-import App from './src/shared/page/App/App' // render a react component
-import template from './src/server/template'; // import this functionality to avoid reading a html file
 import bodyParser from 'body-parser';
 import cookiePaser from 'cookie-parser';
-import routerList from './src/shared/router/RouterList'
-import reducers from './src/redux/reducers'
-import rootSaga from './src/redux/sagas'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleWare from 'redux-saga'
-import actionsType from './src/redux/actions/actionsList'
-import configureStore from './src/server/store'
-import actionList from './src/redux/actions/actionsList';
-
+import * as path from 'path'
+import { ChunkExtractor } from '@loadable/server'
+import createApp from './src/server/entry'
 
 const server = express();
-// const baseURL = process.env.NODE_ENV == 'production' ? '139.155.39.75' : 'localhost';
 
-server.use('/assets', express.static(__dirname + '/dist/public/resource'));
+server.use('/assets', express.static(__dirname + '/dist/client/resource'));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(cookiePaser());
-process.env.baseURL = 'http://localhost:8081';
 
-server.get('*', (req, res) => {
+const clientStatsFile = path.resolve('./dist/client/resource/loadable-stats.json');
 
-  console.log('url is ' + req.url);
+// const serverStatsFile = path.resolve('./dist/server/resource/loadable-stats.json');
 
-  const store = configureStore();
+// const nodeExtractor = new ChunkExtractor({
+//   statsFile: serverStatsFile,
+//   entrypoints: ['server']
+// });
 
-  const context = {};
-
-  const comToBeRendered = (
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
-    </Provider>
-  );
-
-  store.runSaga(rootSaga).toPromise().then(() => {
-    console.log('rendertfffffff', store.getState());
-    res.status(200).send(template({
-      body: renderToString(comToBeRendered),
-      title: 'Salted Fish',
-      state: JSON.stringify(store.getState())
-    }))
-  }).catch((err) => {
-    res.status(500).send(err.message);
-  });
-
-  renderToString(comToBeRendered);
-
-  console.log('close end');
-  store.close();
-
+const webExtractor = new ChunkExtractor({
+  statsFile: clientStatsFile,
+  entrypoints: ['client']
 });
 
-const matchRoute = (url) => {
-  for (let item of routerList) {
-    if (item.path == url) {
-      return false;
-    }
-  }
+// const { default: createApp } = nodeExtractor.requireEntrypoint();
 
-  return { isMatched: false, action: { type: actionList } }
-}
+server.use((req, res) => {
+  
+  const ServerApp = createApp({}, req.url);
+
+  console.log('app returned', ServerApp);
+
+  const jsx = webExtractor.collectChunks(ServerApp);
+
+  console.log('jsx is a', jsx);
+
+  console.log('render to string', renderToString(jsx));
+
+  // store.runSaga(rootSaga).toPromise().then(() => {
+  //   res.status(200).send(template({
+  //     body: renderToString(comToBeRendered),
+  //     title: 'Salted Fish',
+  //     state: JSON.stringify(store.getState())
+  //   }))
+  // }).catch((err) => {
+  //   res.status(500).send(err.message);
+  // });
+
+  // renderToString(comToBeRendered);
+
+  // store.close();
+
+});
 
 server.listen(8082);
 console.log('the express server is listening at port 8082');

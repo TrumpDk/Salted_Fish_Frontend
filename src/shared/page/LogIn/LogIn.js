@@ -14,7 +14,6 @@ class LogIn extends React.Component {
         const userName = this.refs.userName.value;
         const password = this.refs.password.value;
         const { code, data, msg } = await httpService.logIn({ userName: userName, password: password });
-        console.log('props is', this.props);
     }
 
     render() {

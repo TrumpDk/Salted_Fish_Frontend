@@ -9,15 +9,16 @@ import { Route, Redirect } from 'react-router-dom'
  * @param {*} extraProps 
  * @param {*} switchProps 
  */
-const RenderRoutes = ({ routers: { routers, authed, authPath = '/Home' } }) => (
+const RenderRoutes = ({ routers: { routers, authed, authPath = '/LogIn' } }) => (
     routers.map((route, i) => (
         <Route
             key={route.key || i}
             path={route.path}
-            exact={route.exact}
+            exact
             render={(props) => {
                 if (!route.requiresAuth || authed || route.path === authPath) {
-                    return <route.component {...props} route={route} />
+                    console.log('render', <route.component {...props} />);
+                    return <route.component {...props} />
                 }
                 return <Redirect to={{ pathname: authPath, state: { from: props.location } }} />
             }}

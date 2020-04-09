@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux'
 import reducers from './redux/reducers'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './redux/sagas'
+import { loadableReady } from '@loadable/component'
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -26,4 +27,6 @@ const jsx = (
         </Router>
     </Provider>
 )
-ReactDOM.hydrate(jsx, document.getElementById('app'));
+loadableReady().then(() => {
+    ReactDOM.hydrate(jsx, document.getElementById('app'));    
+})

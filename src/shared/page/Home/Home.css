@@ -1,6 +1,14 @@
 .Header_Wrapper {
-    height: 235px;
     background: #ffd84d;
     margin-top: 44px;
     padding: 15px;
+}
+
+.title_content {
+    color: black;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    padding: 0 7.5px 0 7.5px;
+    box-sizing: border-box;
 }

@@ -6,13 +6,12 @@ import './TabList.css'
 export const TabList = (props) => {
 
     const { history: { location: { pathname } } } = props;
-    const showTab = false;
+    const showTab = true;
     routers.forEach(item => {
         if (item.showTab == pathname) {
             showTab = item.showTab;
         }
     })
-    console.log('is showTab', showTab);
 
     return (
         showTab ? 
