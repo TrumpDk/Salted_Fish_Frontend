@@ -1,9 +1,9 @@
 import React from 'react';
-import headerImg from '../../../assets/public/img/sign_in_tile.jpg'
-import saltedFish from '../../../assets/public/img/salted_fish.png'
-import './LogIn.css'
+import headerImg from '../../../assets/img/sign_in_tile.jpg'
+import saltedFish from '../../../assets/img/salted_fish.png'
+import './LogIn.scss'
 import { Button } from 'antd-mobile'
-import httpService from '../../../http/httpList'
+import httpService from '../../../http/httpLists'
 
 class LogIn extends React.Component {
 

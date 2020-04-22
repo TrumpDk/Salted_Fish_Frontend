@@ -9,7 +9,7 @@ const instance = axios.create({
 export default class HttpUtil {
     static get(url, params = {}) {
         return new Promise((resolve, reject) => {
-            instance.get(url, {params}).then(result => {
+            instance.get(url, { params }).then(result => {
                 resolve(result);
             }).catch(err => {
                 reject(err);
@@ -22,7 +22,7 @@ export default class HttpUtil {
             instance.post(url, params).then(result => {
                 resolve(result.data);
             }).catch(err => {
-                reject({err: err.message});
+                reject({ err: err.message });
             })
         })
     }

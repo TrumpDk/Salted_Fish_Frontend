@@ -1,61 +1,87 @@
-import express from 'express';
-import { renderToString } from 'react-dom/server';
-import bodyParser from 'body-parser';
-import cookiePaser from 'cookie-parser';
-import * as path from 'path'
+import path from 'path'
+import express from 'express'
+import { renderToString } from 'react-dom/server'
 import { ChunkExtractor } from '@loadable/server'
-import createApp from './src/server/entry'
+import createStore from './src/server/store'
+import { matchPath } from 'react-router-dom'
+import routerList from './src/router/routers'
+require('./ignore')(); // in server side,nodejs can't resolve css files
 
-const server = express();
+const app = new express();
 
-server.use('/assets', express.static(__dirname + '/dist/client/resource'));
-server.use(bodyParser.json({ limit: '50mb' }));
-server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-server.use(cookiePaser());
+app.use('/assets', express.static(__dirname + '/dist/client'));
 
-const clientStatsFile = path.resolve('./dist/client/resource/loadable-stats.json');
+const nodeStats = path.resolve(
+  __dirname,
+  './dist/server/loadable-stats.json',
+)
 
-// const serverStatsFile = path.resolve('./dist/server/resource/loadable-stats.json');
+const webStats = path.resolve(
+  __dirname,
+  './dist/client/loadable-stats.json',
+)
 
-// const nodeExtractor = new ChunkExtractor({
-//   statsFile: serverStatsFile,
-//   entrypoints: ['server']
-// });
+app.get('*', (req, res) => {
 
-const webExtractor = new ChunkExtractor({
-  statsFile: clientStatsFile,
-  entrypoints: ['client']
-});
+  const nodeExtractor = new ChunkExtractor({
+    statsFile: nodeStats,
+    entrypoints: ['server']
+  })
+  const { default: Entry } = nodeExtractor.requireEntrypoint();
 
-// const { default: createApp } = nodeExtractor.requireEntrypoint();
+  const { store, tasks } = createStore();
 
-server.use((req, res) => {
-  
-  const ServerApp = createApp({}, req.url);
+  const routes = matchPath(req.url, routerList);
 
-  console.log('app returned', ServerApp);
+  routes.path.prefetchData(store);
 
-  const jsx = webExtractor.collectChunks(ServerApp);
+  store.close(); // must dispatch end here
 
-  console.log('jsx is a', jsx);
+  tasks.toPromise().then(() => {
+    const initState = store.getState();
+    console.log('init state', initState);
+    const App = Entry(req.url, store);
 
-  console.log('render to string', renderToString(jsx));
+    const webExtractor = new ChunkExtractor({
+      statsFile: webStats,
+      entrypoints: ['client']
+    })
+    const jsx = webExtractor.collectChunks(App)
 
-  // store.runSaga(rootSaga).toPromise().then(() => {
-  //   res.status(200).send(template({
-  //     body: renderToString(comToBeRendered),
-  //     title: 'Salted Fish',
-  //     state: JSON.stringify(store.getState())
-  //   }))
-  // }).catch((err) => {
-  //   res.status(500).send(err.message);
-  // });
+    const html = renderToString(jsx)
 
-  // renderToString(comToBeRendered);
+    res.set('content-type', 'text/html')
+    res.send(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+	      <meta charset="UTF-8">
+	      <title>没有理想和咸鱼有啥分别</title>
+	      <link rel="icon" type="image/png" href="assets/icon/favicon.ico">
+        ${webExtractor.getLinkTags()}
+        ${webExtractor.getStyleTags()}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+        <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+        <script src="https://at.alicdn.com/t/font_1416198_ahu5115sos.js"></script>
+        <script>
+            if ('addEventListener' in document) {
+                  document.addEventListener('DOMContentLoaded', function() {
+                      FastClick.attach(document.body);
+                }, false);
+            }
+            if(!window.Promise) {
+                document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+            }
+            window.__INITIAL_STATE__ = ${JSON.stringify(initState)}
+        </script>
+        </head>
+        <body>
+          <div id="app">${html}</div>
+        ${webExtractor.getScriptTags()}
+        </body>
+      </html>
+    `)
+  })
+})
 
-  // store.close();
-
-});
-
-server.listen(8082);
-console.log('the express server is listening at port 8082');
+app.listen(8082, () => { console.log('app is running at port 8082') });

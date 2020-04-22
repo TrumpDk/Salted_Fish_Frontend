@@ -1,9 +1,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import routers from '../../router/RouterList'
-import './TabList.css'
+import routers from '../../../router/routers'
+import './TabList.scss'
 
-export const TabList = (props) => {
+const TabList = (props) => {
 
     const { history: { location: { pathname } } } = props;
     const showTab = true;
@@ -14,9 +14,10 @@ export const TabList = (props) => {
     })
 
     return (
-        showTab ? 
-        <div className="footer_content"></div> : null
+        showTab ?
+            <div className="footer_content"></div> : null
     )
 }
 
 export default withRouter(TabList);
+// export default TabList;

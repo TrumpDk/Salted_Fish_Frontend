@@ -1,5 +1,5 @@
 import React from 'react'
-import fish from '../../../assets/public/img/salted_fish.png'
+import fish from '../../../assets/img/salted_fish.png'
 import { SearchBar } from 'antd-mobile'
 import './SearchBar.scss'
 
@@ -18,7 +18,7 @@ const SearchBarCom = () => {
                     onBlur={() => console.log('onBlur')}
                     onCancel={() => console.log('onCancel')}
                     showCancelButton
-                    onChange={() => {return false}}
+                    onChange={() => { return false }}
                 />
             </div>
         </div>

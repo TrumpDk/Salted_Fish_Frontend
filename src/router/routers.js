@@ -1,9 +1,11 @@
-import loadble from '@loadable/component';
-import { fetchCommodityData } from '../../redux/actions/Home';
-const Home = loadble(() => import('../page/Home/Home'));
-const LogIn = loadble(() => import('../page/LogIn/LogIn'));
+import loadable from '@loadable/component'
 
-const RouterList = [
+import { fetchCommodityData } from '../action/Home';
+
+const Home = loadable(() => import('../shared/page/Home/Home'));
+const LogIn = loadable(() => import('../shared/page/LogIn/LogIn'));
+
+const routers = [
     {
         path: '/',
         key: '/',
@@ -35,4 +37,4 @@ const RouterList = [
     }
 ]
 
-export default RouterList;
+export default routers;

@@ -1,4 +1,4 @@
-import ActionList from '../actions/actionsList'
+import ActionList from './actionsList'
 
 export const startCheckLogIn = () => ({
     type: ActionList.Check_LogIn_Start

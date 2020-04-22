@@ -1,5 +1,4 @@
 const list = {
-    // I don't want to write too many strings,so I choose Symble as my first choice
     /**
      * log in action
      */

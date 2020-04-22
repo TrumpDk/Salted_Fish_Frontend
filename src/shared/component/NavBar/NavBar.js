@@ -22,7 +22,7 @@ const NavBar = () => {
                 navBarItems.map(item =>
                     <div key={item.key} className="icon_container">
                         <div className="icon_content">
-                            <IconButton iconObject={{icon: item.icon, className: 'icon icon_ojbect'}}></IconButton>
+                            <IconButton iconObject={{ icon: item.icon, className: 'icon icon_ojbect' }}></IconButton>
                         </div>
                         <div className="icon_span">{item.name}</div>
                     </div>

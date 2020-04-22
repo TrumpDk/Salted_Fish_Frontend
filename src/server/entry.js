@@ -1,37 +1,41 @@
-import App from '../shared/page/App/App'
 import React from 'react'
+import App from '../shared/page/App'
 import { StaticRouter, matchPath } from 'react-router-dom'
-import 'antd-mobile/dist/antd-mobile.css'
 import { Provider } from 'react-redux'
 import createStore from './store'
-// import RouterList from '../shared/router/RouterList'
+import routerList from '../router/routers'
+// import { createStore, applyMiddleware } from 'redux'
+// import reducer from '../reducer'
+// import createSagaMiddleWare from 'redux-saga';
+// import rootSaga from '../saga'
 
-const createApp = (context, url) => {
-    const store = createStore();
+// const sagaMiddleWare = createSagaMiddleWare();
 
-    console.log('context is', context, 'url is', url, store);
+// const store = createStore(reducer, applyMiddleware(sagaMiddleWare));
 
-    // const routes = matchPath(url, RouterList);
+// sagaMiddleWare.run(rootSaga);
 
-    // console.log('log info routes', routes);
+const Server = (url, store) => {
+
+    // const { store, tasks } = createStore();
+
+    // const routes = matchPath(url, routerList);
 
     // routes.path.prefetchData(store);
 
-    // console.log('task is is a', tasks);
+    // store.close();
 
     // tasks.toPromise().then(() => {
-    //     console.log('returmsdfe', store.getState());
-    // });
-    // store.runSage(rootSaga);
+    //     console.log('hi there', store.getState());
+    // })
 
-    const Entry = (
+    return (
         <Provider store={store}>
-            <StaticRouter context={context} location={url}>
+            <StaticRouter location={url}>
                 <App />
             </StaticRouter>
         </Provider>
     )
-    return  Entry;
 }
 
-export default createApp; 
+export default Server

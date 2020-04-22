@@ -17,7 +17,6 @@ const RenderRoutes = ({ routers: { routers, authed, authPath = '/LogIn' } }) => 
             exact
             render={(props) => {
                 if (!route.requiresAuth || authed || route.path === authPath) {
-                    console.log('render', <route.component {...props} />);
                     return <route.component {...props} />
                 }
                 return <Redirect to={{ pathname: authPath, state: { from: props.location } }} />

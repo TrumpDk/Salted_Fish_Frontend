@@ -1,4 +1,4 @@
-import ActionList from '../actions/actionsList'
+import ActionList from '../action/actionsList'
 
 const initState = {
     isLogIn: false,

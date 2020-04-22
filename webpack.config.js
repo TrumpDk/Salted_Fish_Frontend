@@ -1,14 +1,13 @@
+const LoadablePlugin = require('@loadable/webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
-module.exports = {
-    resolve: {
-        extensions: [' ', '.js', '.json'],
-    },
+
+const webpackBaseConfig = {
     plugins: [
-        new miniCssExtractPlugin({
-            filename: 'css/[name].css',
-            chunkFilename: 'css/[name]@[id].css'
-        }),
-        new CleanWebpackPlugin(),
+        new LoadablePlugin(),
+        new MiniCssExtractPlugin(),
+        new CleanWebpackPlugin()
     ]
-};
+}
+
+module.exports = webpackBaseConfig
