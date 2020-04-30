@@ -1,45 +1,48 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config');
+const nodeExternals = require('webpack-node-externals');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const pxtorem = require('postcss-pxtorem');
 const webpack = require('webpack');
+const pxtorem = require('postcss-pxtorem');
 
-const ClientConfig = merge(baseConfig, {
+const ServerConfig = merge(baseConfig, {
     mode: 'production',
+    target: 'node',
     entry: {
-        client: path.join(__dirname, './src/client/entry.js')
+        server: path.join(__dirname, './src/server/entry.js')
     },
+    externals: ["@loadable/component", new nodeExternals({ whitelist: [/\.(sa|sc|c)ss$/] })],
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, './dist/client'),
-        publicPath: '/assets/'
+        path: path.resolve(__dirname, './dist/server'),
+        publicPath: '/assets/',
+        libraryTarget: 'commonjs2'
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: [
-                            [
-                                "@babel/preset-env",
-                                {
-                                    "modules": false
+                loader: "babel-loader",
+                options: {
+                    presets: [
+                        [
+                            "@babel/preset-env",
+                            {
+                                "targets": {
+                                    "node": "current"
                                 }
-                            ],
-                            "@babel/preset-react"
+                            }
                         ],
-                        plugins: [
-                            ["import", { libraryName: "antd-mobile", style: "css" }], // `style: true` 会加载 less 文件
-                            "@babel/plugin-syntax-dynamic-import",
-                            "@loadable/babel-plugin",
-                            "@babel/plugin-transform-runtime"
-                        ]
-                    }
+                        "@babel/preset-react"
+                    ],
+                    plugins: [
+                        ["import", { libraryName: "antd-mobile", style: "css" }], // `style: true` 会加载 less 文件
+                        "@babel/plugin-syntax-dynamic-import",
+                        "@loadable/babel-plugin",
+                        "@babel/plugin-transform-runtime"
+                    ]
                 }
             },
             {
@@ -75,14 +78,10 @@ const ClientConfig = merge(baseConfig, {
         ]
     },
     plugins: [
-        new CopyWebpackPlugin([{
-            from: path.join(__dirname, './src/assets/icon'),
-            to: path.join(__dirname, './dist/client/icon')
-        }]),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify('development')
         })
     ]
 })
 
-module.exports = ClientConfig
+module.exports = ServerConfig

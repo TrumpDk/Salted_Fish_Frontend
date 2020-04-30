@@ -80,7 +80,7 @@ const ClientConfig = merge(baseConfig, {
             to: path.join(__dirname, './dist/client/icon')
         }]),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify('development')
         })
     ]
 })

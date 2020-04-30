@@ -1,13 +1,33 @@
 .placeholder {
-    width: 100%;
-    padding: 50% 0 50% 0;
+  width: 100%;
+  padding: 50% 0 50% 0;
 }
 
 .img_content {
-    padding: 7.5px;
-    box-sizing: border-box;
+  padding: 0.4rem;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.03);
 }
 
-.detail_wrapper, .price_wrapper {
-    font-size: 18px;
+.detail_wrapper {
+  font-size: 0.373333rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 0.5rem;
+  color: #333;
+  min-height: 1rem;
+}
+
+.price_wrapper {
+  font-size: 0.42667rem;
+  color: #dd1a21;
+  line-height: 0.64rem;
+}
+
+.detail_content {
+  margin-top: 0.21333rem;
+  padding: 0 0.1rem;
 }

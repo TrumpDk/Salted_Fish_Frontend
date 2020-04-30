@@ -24,14 +24,6 @@ class App extends React.Component {
         return (
             <div className="App_Root">
                 <div className="App_Content">
-                    {/* <Switch>
-                        {
-                            routers.map(item => {
-                                console.log('result is', <Route path={item.path} key={item.key} render={props => <item.component {...props} />} />)
-                                return <Route path={item.path} key={item.key} render={props => <item.component {...props} />} />
-                            })
-                        }
-                    </Switch> */}
                     <Switch>
                         <RenderRountes routers={{ routers: routers, authed: authed, authPath: authPath }}></RenderRountes>
                     </Switch>

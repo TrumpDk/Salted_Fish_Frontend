@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './index.scss'
 class Observer extends Component {
     constructor() {
         super();
@@ -11,7 +11,8 @@ class Observer extends Component {
         this.io = new IntersectionObserver(entry => {
             const _entry = entry;
             if (_entry[0].isIntersecting && this.props.info.index === (this.props.info.length - 1)) {
-                this.props.fetchNextPageData({startIndex: this.props.info.nextPage, pageSize: 6});
+                console.log('ss', this.props.info.nextPage);
+                this.props.fetchNextPageData({ startIndex: this.props.info.nextPage, pageSize: 6 });
             }
             this.setState({ isVisible: _entry[0].isIntersecting });
         }, {});
@@ -24,7 +25,7 @@ class Observer extends Component {
     }
     render() {
         return (
-            <div style={{display: "inline-block", width: "50%"}}
+            <div className="img_container"
                 ref={div => {
                     this.container = div;
                 }}

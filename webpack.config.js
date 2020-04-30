@@ -6,7 +6,7 @@ const webpackBaseConfig = {
     plugins: [
         new LoadablePlugin(),
         new MiniCssExtractPlugin(),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
     ]
 }
 

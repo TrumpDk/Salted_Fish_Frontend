@@ -1,7 +1,8 @@
 import axios from 'axios'
+import location from './location'
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8081',
+    baseURL: location,
     timeout: 10000,
     withCredentials: true
 });

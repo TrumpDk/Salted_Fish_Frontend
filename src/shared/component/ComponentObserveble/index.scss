@@ -1,0 +1,15 @@
+.img_container {
+    width: 50%;
+    display: inline-block;
+    padding-top: .13333rem;
+    padding-bottom: .13333rem;
+    box-sizing: border-box;
+}
+
+.img_container:nth-child(odd) {
+    padding-right: .13333rem;
+}
+
+.img_container:nth-child(even) {
+    padding-left: .13333rem;
+}

@@ -5,9 +5,38 @@ import { ChunkExtractor } from '@loadable/server'
 import createStore from './src/server/store'
 import { matchPath } from 'react-router-dom'
 import routerList from './src/router/routers'
+// import clientConfig from './webpack.client'
+// import serverConfig from './webpack.server'
 require('./ignore')(); // in server side,nodejs can't resolve css files
 
 const app = new express();
+
+// const webpack = require('webpack');
+
+// const webpackDevMiddlewareForClient = require('webpack-dev-middleware');
+// const webpackDevMiddlewareForServer = require('webpack-dev-middleware');
+// const webpackHotMiddleware = require('webpack-hot-middleware');
+// const clientCompiler = webpack(clientConfig);
+// const serverCompiler = webpack(serverConfig);
+
+// app.use(webpackDevMiddlewareForClient(clientCompiler, {
+//   publicPath: clientConfig.output.publicPath,
+//   noInfo: true,
+//   stats: {
+//     colors: true
+//   }
+// }));
+
+// app.use(webpackDevMiddlewareForServer(serverCompiler, {
+//   publicPath: serverConfig.output.publicPath,
+//   noInfo: true,
+//   stats: {
+//     colors: true
+//   }
+// }));
+
+// app.use(webpackHotMiddleware(clientCompiler));
+// app.use(webpackHotMiddleware(serverCompiler));
 
 app.use('/assets', express.static(__dirname + '/dist/client'));
 
@@ -22,6 +51,8 @@ const webStats = path.resolve(
 )
 
 app.get('*', (req, res) => {
+
+  console.log('req url is', req.url);
 
   const nodeExtractor = new ChunkExtractor({
     statsFile: nodeStats,
@@ -39,7 +70,6 @@ app.get('*', (req, res) => {
 
   tasks.toPromise().then(() => {
     const initState = store.getState();
-    console.log('init state', initState);
     const App = Entry(req.url, store);
 
     const webExtractor = new ChunkExtractor({
@@ -63,7 +93,9 @@ app.get('*', (req, res) => {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
         <script src="https://at.alicdn.com/t/font_1416198_ahu5115sos.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/eruda"></script>
         <script>
+            eruda.init();
             if ('addEventListener' in document) {
                   document.addEventListener('DOMContentLoaded', function() {
                       FastClick.attach(document.body);
@@ -73,6 +105,17 @@ app.get('*', (req, res) => {
                 document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
             }
             window.__INITIAL_STATE__ = ${JSON.stringify(initState)}
+        </script>
+        <script>
+          (function () {
+              // var dpr = window.devicePixelRatio;
+              function resize() {
+                  var deviceWidth = document.documentElement.clientWidth;
+                  document.documentElement.style.fontSize = (deviceWidth / 10) +'px';
+              }
+              resize();
+              window.onresize = resize;
+          })()
         </script>
         </head>
         <body>

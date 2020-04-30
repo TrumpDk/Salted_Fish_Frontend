@@ -3,6 +3,8 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config');
 const nodeExternals = require('webpack-node-externals');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+const pxtorem = require('postcss-pxtorem');
 
 const ServerConfig = merge(baseConfig, {
     mode: 'production',
@@ -50,6 +52,17 @@ const ServerConfig = merge(baseConfig, {
                         loader: miniCssExtractPlugin.loader,
                     },
                     'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                pxtorem({
+                                    rootValue: 37.5,
+                                    propWhiteList: [],
+                                })
+                            ]
+                        }
+                    },
                     'sass-loader',
                 ]
             },
@@ -63,7 +76,12 @@ const ServerConfig = merge(baseConfig, {
                 }]
             },
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        })
+    ]
 })
 
 module.exports = ServerConfig

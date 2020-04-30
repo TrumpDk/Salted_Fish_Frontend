@@ -1,14 +1,47 @@
 .Header_Wrapper {
-    background: #ffd84d;
     margin-top: 44px;
-    padding: 15px;
+    padding: .2rem .4rem .2rem .4rem;
+    background-color: white;
 }
 
 .title_content {
-    color: black;
-    font-size: 18px;
-    display: block;
+    color: #333;
+    font-size: .42667rem;
     text-align: center;
-    padding: 0 7.5px 0 7.5px;
     box-sizing: border-box;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+
+.home_bar {
+    display: inline-block;
+    width: .53333rem;
+    height: .53333rem;
+}
+
+.home_bar_span {
+    font-size: .38rem;
+    margin-top: .09333rem;
+    color: whitesmoke;
+    color: #666;
+}
+
+.goodsBannerItem {
+    width: 100vw;
+    height: 3.94667rem;
+    overflow: hidden;
+}
+
+.goodsBannerItem>img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.hot_goods {
+    background-color: white;
+    margin-top: .266667rem;
+    padding: 0 .4rem;
 }

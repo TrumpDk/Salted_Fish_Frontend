@@ -1,8 +1,8 @@
 import React from 'React'
 
-const IconButton = ({ iconObject: { icon, className } }) => {
+const IconButton = ({ icon }) => {
     return (
-        <svg className={className} aria-hidden="true">
+        <svg aria-hidden="true">
             <use xlinkHref={icon}></use>
         </svg>
     );

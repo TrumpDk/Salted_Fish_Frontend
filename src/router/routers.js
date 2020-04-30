@@ -12,8 +12,9 @@ const routers = [
         component: Home,
         requiresAuth: false,
         showTab: true,
+        title: '首页',
         prefetchData(stroe) {
-            const plainObject = fetchCommodityData({ startIndex: 1, pageSize: 6 });
+            const plainObject = fetchCommodityData({ startIndex: 0, pageSize: 6 });
             stroe.dispatch(plainObject);
         }
     },
@@ -23,6 +24,7 @@ const routers = [
         component: Home,
         requiresAuth: false,
         showTab: true,
+        title: '首页',
         prefetchData(stroe) {
             const plainObject = fetchCommodityData({ startIndex: 1, pageSize: 6 });
             stroe.dispatch(plainObject);
@@ -31,6 +33,15 @@ const routers = [
     {
         path: '/LogIn',
         key: '/LogIn',
+        title: '登录',
+        component: LogIn,
+        requiresAuth: false,
+        showTab: false
+    },
+    {
+        path: '/MY',
+        key: '/My',
+        title: '我的',
         component: LogIn,
         requiresAuth: false,
         showTab: false
