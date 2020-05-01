@@ -2,7 +2,7 @@ import ActionList from '../action/actionsList'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import httpService from '../http/httpLists'
 
-function* checkLogInSaga() {
+function* checkLogin() {
     try {
         const data = yield call(httpService.checkLogIn, null);
         if (data) {
@@ -18,5 +18,5 @@ function* checkLogInSaga() {
 }
 
 export default function* root() {
-    yield takeLatest(ActionList.Check_LogIn_Start, checkLogInSaga);
+    yield takeLatest(ActionList.Check_LogIn_Start, checkLogin);
 }
