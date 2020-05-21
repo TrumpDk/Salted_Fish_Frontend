@@ -19,12 +19,17 @@ const httpService = {
     /**
      * check log in
      */
-    checkLogIn: params => HttpUtil.get('/checkLogIn', params),
+    checkLogin: params => HttpUtil.get('/checkLogIn', params),
 
     /**
      * load init data for home page
      */
     loadCommodityForHome: params => HttpUtil.post('/loadHomeData', params),
+
+    /**
+     * log out
+     */
+    signout: () => HttpUtil.get('/Logout')
 }
 
 export default httpService;

@@ -4,9 +4,9 @@
 }
 
 .sign_in_content {
-    background: white;
-    border-radius: .5rem;
-    margin: 13vw .8rem .8rem .8rem;
+    margin-top: 1.2rem;
+    padding: 0 .566666rem;
+    margin-bottom: 1.5rem;
 }
 
 .fish_img_container {
@@ -14,33 +14,22 @@
 }
 
 .fish_img {
-    width: 6rem;
-    height: 6rem;
+    width: 2rem;
+    height: 2rem;
     margin: 0 auto;
-    margin-top: -2.5rem;
 }
 
-.sign_in_main {
-    padding: .4rem .4rem 0 .4rem;
+.input_content {
+    margin-top: .3rem;
 }
 
-.input_Wrap {
-    height: 2.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #dfdfdf;
-    margin: .8rem 0 .8rem 0;
+.login_container {
+    margin-top: .66666rem;
 }
 
-.input_Wrap>input {
-    display: block;
-    height: 90%;
-    border: none;
-    width: 100%;
-    background: #dfdfdf;
-}
-
-.login_Btn {
-    padding: .4rem .4rem 1.5rem .4rem;
+.msg_content {
+    color: #DD1A21;
+    margin-top: .3rem;
+    font-size: .43333rem;
+    padding: 0 .36rem;
 }

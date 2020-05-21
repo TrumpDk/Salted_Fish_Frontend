@@ -2,12 +2,12 @@ const list = {
     /**
      * log in action
      */
-    Log_In_Start: Symbol(),
+    Log_In_Request: Symbol(),
     Log_In_Successful: Symbol(),
     Log_In_Failed: Symbol(),
-    Log_Out_Start: Symbol(),
-    Log_Out_Failed: Symbol(),
-    Log_Out_Successfull: Symbol(),
+    Log_In_Duration: Symbol(),
+    Log_Out_Request: Symbol(),
+    Log_Out_End: Symbol(),
 
     /**
      * animate action
@@ -18,16 +18,16 @@ const list = {
     /**
      * check auth action
      */
-    Check_LogIn_Start: Symbol(),
-    Check_LogIn_Successfull: Symbol(),
-    Check_LogIn_Failed: Symbol(),
+    Check_LogIn_Request: Symbol(),
+    Check_LogIn_Loged: Symbol(),
+    Check_LogIn_Not_Loged: Symbol(),
 
     /**
      * home page requests
      */
     Home_Data_Request: Symbol(),
     Home_Data_Request_Failed: Symbol(),
-    Home_Data_Request_Successful: Symbol()
+    Home_Data_Request_Successful: Symbol(),
 
 }
 

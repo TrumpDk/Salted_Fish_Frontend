@@ -7,7 +7,7 @@ const webpack = require('webpack');
 const pxtorem = require('postcss-pxtorem');
 
 const ServerConfig = merge(baseConfig, {
-    mode: 'production',
+    mode: 'development',
     target: 'node',
     entry: {
         server: path.join(__dirname, './src/server/entry.js')

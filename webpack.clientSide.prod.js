@@ -6,20 +6,20 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const pxtorem = require('postcss-pxtorem');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
+const helpers = require('./helpers');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const ClientConfig = merge(baseConfig, {
-    mode: 'development',
+    mode: 'production',
     entry: {
         client: path.join(__dirname, './src/client/entry.js')
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, './dist/client'),
+        path: helpers.root('dist'),
         publicPath: '/assets/'
     },
-    devtool: 'source-map',
+    devtool: 'cheap-source-map',
     module: {
         rules: [
             {
@@ -81,26 +81,21 @@ const ClientConfig = merge(baseConfig, {
     plugins: [
         new CopyWebpackPlugin([{
             from: path.join(__dirname, './src/assets/icon'),
-            to: path.join(__dirname, './dist/client/icon')
+            to: helpers.root('dist/icon')
         }]),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new HtmlWebpackPlugin({
             template: './src/client/index.html'
-        }),
-        new WriteFilePlugin(),
-        new OpenBrowserPlugin({
-            "url": "http://localhost:8082"
         })
     ],
-    devServer: {
-        publicPath: "/assets/",
-        contentBase: path.join(__dirname, "dist/client"),
-        port: 8082,
-        hot: true,
-        historyApiFallback: true
-    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin()
+        ],
+    }
 })
 
 module.exports = ClientConfig

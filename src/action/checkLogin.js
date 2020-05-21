@@ -1,13 +1,17 @@
 import ActionList from './actionsList'
 
-export const startCheckLogIn = () => ({
-    type: ActionList.Check_LogIn_Start
-});
+export const checkLogin = () => ({
+    type: ActionList.Check_LogIn_Request
+})
 
-export const checkLogInSuccessFull = () => ({
-    type: ActionList.Check_LogIn_Successfull
-});
+export const userDoLogin = () => ({
+    type: ActionList.Check_LogIn_Loged
+})
 
-export const checkLogInFailed = () => ({
-    type: ActionList.Check_LogIn_Failed
-});
+export const userLogout = () => ({
+    type: ActionList.Log_Out_Request
+})
+
+export const userDoLogout = () => ({
+    type: ActionList.Log_Out_End
+})

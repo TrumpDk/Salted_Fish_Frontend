@@ -1,28 +1,14 @@
-import React from 'react'
-import fish from '../../../assets/img/salted_fish.png'
-import { SearchBar } from 'antd-mobile'
-import './SearchBar.scss'
+import React from "react";
+import IconButton from "../IconButton/IconButton";
+import './SeachBar.scss'
 
-const SearchBarCom = () => {
-    return (
-        <div className="search_bar_content">
-            <div className="bar_img_content">
-                <img src={fish}></img>
-            </div>
-            <div className="bar_search_content">
-                <SearchBar
-                    placeholder="Search"
-                    onSubmit={value => console.log(value, 'onSubmit')}
-                    onClear={value => console.log(value, 'onClear')}
-                    onFocus={() => console.log('onFocus')}
-                    onBlur={() => console.log('onBlur')}
-                    onCancel={() => console.log('onCancel')}
-                    showCancelButton
-                    onChange={() => { return false }}
-                />
-            </div>
-        </div>
-    );
-}
+const SearchBar = () => (
+    <div className="search_content">
+        <span className="icon_search">
+            <IconButton icon={"#iconsearch"} />
+        </span>
+        <span className="searchbarholder">请输入想要搜索的商品</span>
+    </div>
+)
 
-export default SearchBarCom;
+export default SearchBar;

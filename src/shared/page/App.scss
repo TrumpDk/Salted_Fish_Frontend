@@ -32,7 +32,6 @@
 .App_Footer {
   display: flex;
   width: 100%;
-  background: black;
 }
 
 .icon {
@@ -47,6 +46,16 @@ html {
   font-family: PingFangSC-Light, helvetica, "Heiti SC";
 }
 
-body {
-  background: white;
+.svg_content {
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
 }

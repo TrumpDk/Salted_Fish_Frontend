@@ -1,16 +1,11 @@
 import React from 'react'
 import { Switch } from 'react-router-dom'
 import routers from '../../router/routers'
-import 'antd-mobile/dist/antd-mobile.css';
+import 'antd-mobile/dist/antd-mobile.css'
 import TabList from '../component/TabList/TabList'
-import RenderRountes from '../utils/renderRouter'
 import './App.scss'
-import { bindActionCreators } from 'redux'
-import * as checkLogInAction from '../../action/actionsList'
 import { connect } from 'react-redux'
-
-const authed = false;
-const authPath = '/LogIn';
+import RenderRoutes from '../utils/renderRouter'
 
 const tabLists = [
     { icon: '', name: '闲鱼', url: '/fish', },
@@ -20,12 +15,16 @@ const tabLists = [
 ]
 
 class App extends React.Component {
+
     render() {
+        const { isLogin } = this.props.loginStatus;
         return (
             <div className="App_Root">
                 <div className="App_Content">
                     <Switch>
-                        <RenderRountes routers={{ routers: routers, authed: authed, authPath: authPath }}></RenderRountes>
+                        {
+                            RenderRoutes({ routers: routers, authed: isLogin })
+                        }
                     </Switch>
                 </div>
                 <div className="App_Footer">
@@ -37,10 +36,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isLogIn: state.logInReducer
-})
-const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(checkLogInAction, dispatch)
+    loginStatus: state.checkLogin
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

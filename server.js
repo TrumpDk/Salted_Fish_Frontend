@@ -52,8 +52,6 @@ const webStats = path.resolve(
 
 app.get('*', (req, res) => {
 
-  console.log('req url is', req.url);
-
   const nodeExtractor = new ChunkExtractor({
     statsFile: nodeStats,
     entrypoints: ['server']
@@ -92,10 +90,8 @@ app.get('*', (req, res) => {
         ${webExtractor.getStyleTags()}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
-        <script src="https://at.alicdn.com/t/font_1416198_ahu5115sos.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+        <script src="https://at.alicdn.com/t/font_1416198_uujku0ozpu.js"></script>
         <script>
-            eruda.init();
             if ('addEventListener' in document) {
                   document.addEventListener('DOMContentLoaded', function() {
                       FastClick.attach(document.body);

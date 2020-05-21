@@ -1,0 +1,25 @@
+.search_content {
+    flex: 1;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    justify-content: center;
+    height: .74667rem;
+    font-size: .37333rem;
+    background-color: #ffffff;
+    border-radius: .10667rem;
+    align-items: center;
+}
+
+.am-search {
+    background: transparent !important;
+}
+
+.icon_search {
+    width: .37333rem;
+    height: .37333rem;
+    margin-right: .13333rem;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}

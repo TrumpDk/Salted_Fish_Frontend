@@ -11,7 +11,6 @@ class Observer extends Component {
         this.io = new IntersectionObserver(entry => {
             const _entry = entry;
             if (_entry[0].isIntersecting && this.props.info.index === (this.props.info.length - 1)) {
-                console.log('ss', this.props.info.nextPage);
                 this.props.fetchNextPageData({ startIndex: this.props.info.nextPage, pageSize: 6 });
             }
             this.setState({ isVisible: _entry[0].isIntersecting });

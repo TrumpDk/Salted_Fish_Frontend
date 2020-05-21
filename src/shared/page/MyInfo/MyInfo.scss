@@ -1,0 +1,80 @@
+.user_info_content {
+  display: flex;
+  height: 3.6rem;
+  padding: 0.85333rem 0 0.85333rem 0.4rem;
+  background: #cc4333;
+  box-sizing: border-box;
+}
+
+.user_img_content {
+  display: flex;
+  width: 1.89333rem;
+  height: 1.89333rem;
+  border-radius: 50%;
+}
+
+.info_content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 0.4rem;
+  justify-content: center;
+}
+
+.userName {
+  color: #fff;
+  font-size: 0.48rem;
+  margin-bottom: 0.13333rem;
+  width: 100%;
+}
+
+.userDesc {
+  color: #fff;
+  font-size: 0.4rem;
+  width: 100%;
+}
+
+.my_menu {
+  display: flex;
+  background: white;
+  margin-bottom: .3333rem;
+}
+
+.my_list_item {
+  width: 33.2555%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+  border-top: none;
+  border-left: none;
+  height: 3rem;
+  justify-content: center;
+}
+
+.my_list_item:nth-of-type(3n) {
+  border-right: 0;
+}
+
+.menu_icon {
+  width: 0.66667rem;
+  height: 0.66667rem;
+  display: flex;
+  margin-bottom: 0.12rem;
+}
+
+.menu_title {
+  display: flex;
+  text-align: center;
+}
+
+.no_boder_bottom {
+  border-bottom: none;
+}
+
+.sign_out {
+  height: 1.28rem;
+  line-height: 1.28rem;
+  text-align: center;
+  background: white;
+}

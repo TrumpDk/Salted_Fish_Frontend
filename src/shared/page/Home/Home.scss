@@ -1,5 +1,5 @@
 .Header_Wrapper {
-    margin-top: 44px;
+    margin-top: 1.17333rem;
     padding: .2rem .4rem .2rem .4rem;
     background-color: white;
 }
@@ -22,8 +22,12 @@
 .home_bar_span {
     font-size: .38rem;
     margin-top: .09333rem;
-    color: whitesmoke;
     color: #666;
+}
+
+.Home_Carousel {
+    width: 100vw !important;
+    height: 3.94667rem !important;
 }
 
 .goodsBannerItem {
@@ -44,4 +48,51 @@
     background-color: white;
     margin-top: .266667rem;
     padding: 0 .4rem;
+}
+
+.bar_img_content {
+    flex: 0 1;
+    width: 1rem;
+    height: 1rem;
+    margin-right: .2333rem;
+}
+
+.bar_img_content>img {
+    width: 1rem;
+    height: 1rem;
+}
+
+.login_btn {
+    width: .98667rem;
+    height: .53333rem;
+    line-height: .53333rem;
+    text-align: center;
+    color: #ffffff;
+    font-size: .32rem;
+    margin-left: .2333rem;
+}
+
+.searchbarholder {
+    font-size: .3733333rem;
+    color: whitesmoke;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    color: #7e7e7e;
+}
+
+.home_search_bar_content {
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-direction: row;
+    background: #cc4333;
+    width: 100%;
+    align-items: center;
+    padding: .08665rem .4rem;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }

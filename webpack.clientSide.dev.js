@@ -8,6 +8,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const helpers = require('./helpers');
 
 const ClientConfig = merge(baseConfig, {
     mode: 'development',
@@ -16,7 +17,7 @@ const ClientConfig = merge(baseConfig, {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, './dist/client'),
+        path: helpers.root('dist'),
         publicPath: '/assets/'
     },
     devtool: 'source-map',
@@ -81,7 +82,7 @@ const ClientConfig = merge(baseConfig, {
     plugins: [
         new CopyWebpackPlugin([{
             from: path.join(__dirname, './src/assets/icon'),
-            to: path.join(__dirname, './dist/client/icon')
+            to: helpers.root('dist/icon')
         }]),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
@@ -92,11 +93,12 @@ const ClientConfig = merge(baseConfig, {
         new WriteFilePlugin(),
         new OpenBrowserPlugin({
             "url": "http://localhost:8082"
-        })
+        }),
+        // new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         publicPath: "/assets/",
-        contentBase: path.join(__dirname, "dist/client"),
+        contentBase: helpers.root('dist'),
         port: 8082,
         hot: true,
         historyApiFallback: true

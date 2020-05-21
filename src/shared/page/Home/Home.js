@@ -1,20 +1,23 @@
 import React, { Fragment } from 'react'
 import './Home.scss'
 import { bindActionCreators } from 'redux'
-import * as action from '../../../action/Home'
+import * as HomeAction from '../../../action/Home'
 import { connect } from 'react-redux'
-import SearchBarCom from '../../component/SearchBar/SearchBar'
 import NavBar from '../../component/NavBar/NavBar'
 import Observer from '../../component/ComponentObserveble/ComponentObserveble'
 import Gallery from '../../component/Gallery/Gallery'
+import fish from '../../../assets/img/salted_fish.png'
 import { Carousel } from 'antd-mobile'
+import { Link } from 'react-router-dom'
+import * as checkLogin from '../../../action/checkLogin'
+import SearchBar from '../../component/SearchBar/SearchBar'
 
 const navBarList = [
-    { name: '游戏', icon: '#iconcategory', key: 1 },
-    { name: '游戏', icon: '#iconcategory', key: 2 },
-    { name: '游戏', icon: '#iconcategory', key: 3 },
-    { name: '游戏', icon: '#iconcategory', key: 4 },
-    { name: '游戏', icon: '#iconcategory', key: 5 }
+    { name: '运动', icon: '#iconyundong', key: 1 },
+    { name: '游戏', icon: '#iconyouxi', key: 2 },
+    { name: '家具', icon: '#iconjiaju', key: 3 },
+    { name: '服装', icon: '#iconyifu', key: 4 },
+    { name: '更多', icon: '#icongengduo', key: 5 }
 ]
 
 const gallery = [
@@ -26,29 +29,35 @@ const gallery = [
 
 class Home extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
-        if (this.props.commodityList.dataArray.length == 0) {
-            this.fetchItemData(0);
-        }
+        this.props.checkLogin.checkLogin();
+        this.fetchItemData(0);
     }
 
     fetchItemData(index, pageSize = 6) {
-        this.props.action.fetchCommodityData({ startIndex: index, pageSize: pageSize });
+        this.props.HomeAction.fetchCommodityData({ startIndex: index, pageSize: pageSize });
     }
 
     render() {
         const { dataArray } = this.props.commodityList;
+        const { isLogin } = this.props.loginStatus;
         return (
             <Fragment>
-                <SearchBarCom></SearchBarCom>
+                <div className="home_search_bar_content">
+                    <div className="bar_img_content">
+                        <img src={fish}></img>
+                    </div>
+                    <SearchBar />
+                    {
+                        isLogin ? null : <Link to="/LogIn">
+                            <div className="login_btn">登录</div>
+                        </Link>
+                    }
+                </div>
                 <div className="Header_Wrapper">
                     <NavBar barItems={navBarList} iconContentStyle={'home_bar'} iconOjbect={'icon_ojbect'} iconSpanStyle={'home_bar_span'} />
                 </div>
-                <Carousel autoplay infinite>
+                <Carousel autoplay infinite className="Home_Carousel">
                     {gallery.map(item => (
                         <div className="goodsBannerItem" key={item.id}>
                             <img src={item.img_url} alt="load img failed" />
@@ -61,7 +70,7 @@ class Home extends React.Component {
                     </div>
                     <div className="item_content">
                         {dataArray.map((item, index) =>
-                            <Observer key={item.items_Id} info={{ item, length: dataArray.length, index, nextPage: this.props.commodityList.index }} fetchNextPageData={this.props.action.fetchCommodityData}>
+                            <Observer key={item.items_Id} info={{ item, length: dataArray.length, index, nextPage: this.props.commodityList.index }} fetchNextPageData={this.props.HomeAction.fetchCommodityData}>
                                 {(isVisible, item, index) => <Gallery isVisible={isVisible} item={item} index={index} />}
                             </Observer>
                         )}
@@ -74,11 +83,13 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    commodityList: state.homeData
+    commodityList: state.homeData,
+    loginStatus: state.checkLogin,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    action: bindActionCreators(action, dispatch)
+    HomeAction: bindActionCreators(HomeAction, dispatch),
+    checkLogin: bindActionCreators(checkLogin, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

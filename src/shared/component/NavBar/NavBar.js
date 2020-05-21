@@ -1,5 +1,6 @@
 import React from 'react'
 import './NavBar.scss'
+import IconButton from '../IconButton/IconButton'
 
 const NavBar = ({ barItems, iconContentStyle, iconSpanStyle }) => {
     return (
@@ -8,9 +9,7 @@ const NavBar = ({ barItems, iconContentStyle, iconSpanStyle }) => {
                 barItems.map(item =>
                     <a key={item.key} className="icon_container">
                         <i className={iconContentStyle}>
-                            <svg aria-hidden="true" className='svg_content'>
-                                <use xlinkHref={item.icon}></use>
-                            </svg>
+                            <IconButton icon={item.icon} />
                         </i>
                         <div className={iconSpanStyle}>{item.name}</div>
                     </a>
