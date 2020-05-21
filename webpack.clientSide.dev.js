@@ -18,7 +18,7 @@ const ClientConfig = merge(baseConfig, {
     output: {
         filename: '[name].js',
         path: helpers.root('dist'),
-        publicPath: '/assets/'
+        publicPath: '/'
     },
     devtool: 'source-map',
     module: {
@@ -97,7 +97,7 @@ const ClientConfig = merge(baseConfig, {
         // new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        publicPath: "/assets/",
+        publicPath: "/",
         contentBase: helpers.root('dist'),
         port: 8082,
         hot: true,

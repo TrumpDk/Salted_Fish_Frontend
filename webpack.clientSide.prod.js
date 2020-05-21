@@ -17,7 +17,7 @@ const ClientConfig = merge(baseConfig, {
     output: {
         filename: '[name].js',
         path: helpers.root('dist'),
-        publicPath: '/assets/'
+        publicPath: '/'
     },
     devtool: 'cheap-source-map',
     module: {

@@ -16,7 +16,7 @@ const ServerConfig = merge(baseConfig, {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, './dist/server'),
-        publicPath: '/assets/',
+        publicPath: '/',
         libraryTarget: 'commonjs2'
     },
     module: {

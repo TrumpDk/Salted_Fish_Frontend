@@ -14,7 +14,7 @@ const ClientConfig = merge(baseConfig, {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, './dist/client'),
-        publicPath: '/assets/'
+        publicPath: '/'
     },
     module: {
         rules: [

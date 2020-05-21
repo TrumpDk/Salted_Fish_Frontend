@@ -17,7 +17,7 @@ const ClientConfig = merge(baseConfig, {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, './dist/client'),
-        publicPath: '/assets/'
+        publicPath: '/'
     },
     devtool: 'source-map',
     module: {
@@ -95,7 +95,7 @@ const ClientConfig = merge(baseConfig, {
         })
     ],
     devServer: {
-        publicPath: "/assets/",
+        publicPath: "/",
         contentBase: path.join(__dirname, "dist/client"),
         port: 8082,
         hot: true,
