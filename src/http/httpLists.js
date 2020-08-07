@@ -24,12 +24,27 @@ const httpService = {
     /**
      * load init data for home page
      */
-    loadCommodityForHome: params => HttpUtil.post('/loadHomeData', params),
+    loadCommodityForHome: params => HttpUtil.get('/loadHomeData'),
 
     /**
      * log out
      */
-    signout: () => HttpUtil.get('/Logout')
+    signout: () => HttpUtil.get('/Logout'),
+
+    /**
+     * fetch Categories and SubCategories
+     */
+    getCates: params => HttpUtil.get('/getInitCates', params),
+
+    /**
+     * fetch sub cate items
+     */
+    getSubCateItems: params => HttpUtil.get('/getSubCatesList', params),
+
+    /**
+     * fetch item detail
+     */
+    getItemDetail: params => HttpUtil.get('/getItemDetail', params)
 }
 
 export default httpService;

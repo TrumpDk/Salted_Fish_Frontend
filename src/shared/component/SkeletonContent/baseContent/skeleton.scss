@@ -1,0 +1,45 @@
+.linear_image {
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.1) 25%,
+    rgba(0, 0, 0, 0.185) 35%,
+    rgba(0, 0, 0, 0.1) 50%
+  );
+  background-size: 400% 100%;
+  background-position: 100% 50%;
+}
+
+.avatar_ske {
+  border-radius: 50%;
+  display: flex;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+.img_content_ske {
+  width: 375px;
+  height: 40px;
+  display: flex;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+.paragraph_ske {
+  width: 100%;
+  height: 20px;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.2;
+    background-position: 100% 50%;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.2;
+    background-position: 0 50%;
+  }
+}

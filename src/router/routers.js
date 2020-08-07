@@ -1,12 +1,12 @@
 import loadable from '@loadable/component'
 
-import { fetchCommodityData } from '../action/Home';
-
 const Home = loadable(() => import('../shared/page/Home/Home'));
 const LogIn = loadable(() => import('../shared/page/LogIn/LogIn'));
 const NotFound = loadable(() => import('../shared/page/NotFound/NotFound'));
 const MyInfo = loadable(() => import('../shared/page/MyInfo/MyInfo'));
 const Category = loadable(() => import('../shared/page/CateList/cateList'));
+const List = loadable(() => import('../shared/page/SubCateList/SubCateList'));
+const Item = loadable(() => import('../shared/page/ItemDetailPage/ItemDetailPage'));
 
 const routers = [
     {
@@ -18,10 +18,6 @@ const routers = [
         title: '首页',
         icon: '#iconshouye-xianxing',
         icon_selected: '#iconshouye-mianxing',
-        prefetchData(stroe) {
-            const plainObject = fetchCommodityData({ startIndex: 0, pageSize: 6 });
-            stroe.dispatch(plainObject);
-        }
     },
     {
         path: '/Category',
@@ -32,10 +28,6 @@ const routers = [
         title: '分类',
         icon: '#iconfenlei-xianxing',
         icon_selected: '#iconfenlei-mianxing',
-        prefetchData(stroe) {
-            const plainObject = fetchCommodityData({ startIndex: 1, pageSize: 6 });
-            stroe.dispatch(plainObject);
-        }
     },
     {
         path: '/Cart',
@@ -58,11 +50,25 @@ const routers = [
         hidden: false
     },
     {
+        path: '/List',
+        key: '/List',
+        component: List,
+        requiresAuth: false,
+        hidden: true
+    },
+    {
         path: '/LogIn',
         key: '/LogIn',
         component: LogIn,
         requiresAuth: false,
         hidden: true
+    },
+    {
+        path: '/Item',
+        key: '/Item',
+        component: Item,
+        requiresAuth: false,
+        hidden: true,
     },
     {
         path: '*',

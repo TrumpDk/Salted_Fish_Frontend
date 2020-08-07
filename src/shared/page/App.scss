@@ -1,17 +1,5 @@
 .border {
-  border: 1px solid rgb(237, 237, 237);
-}
-
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-  .border {
-    border: 0.5px solid rgb(237, 237, 237);
-  }
-}
-
-@media screen and (-webkit-min-device-pixel-ratio: 3) {
-  .border {
-    border: 0.333333px solid rgb(237, 237, 237);
-  }
+  border: 1PX solid rgb(237, 237, 237);
 }
 
 .App_Root {
@@ -58,4 +46,8 @@ ul {
 
 li {
   list-style: none;
+}
+
+a {
+  color: #333
 }

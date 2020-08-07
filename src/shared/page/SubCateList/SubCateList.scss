@@ -1,0 +1,27 @@
+.subcate_img_container {
+    width: 50%;
+    display: inline-block;
+    padding-bottom: 0.23333rem;
+    box-sizing: border-box;
+}
+
+.subcate_img_container:nth-child(even) {
+    padding-left: 0.13333rem;
+}
+
+.subcate_img_container:nth-child(odd) {
+    padding-right: 0.13333rem;
+}
+
+.subcate_items_content {
+    background: white;
+    margin-top: .3333rem;
+    padding: 0 0.4rem;
+}
+
+.subcate_bottom {
+    height: .8rem;
+    line-height: .8rem;
+    font-size: .4666rem;
+    text-align: center;
+}

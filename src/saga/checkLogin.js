@@ -16,8 +16,6 @@ function* checkLogin() {
     }
 }
 
-function* root() {
+export default function* root() {
     yield takeLatest(ActionList.Check_LogIn_Request, checkLogin);
-}
-
-export default root;
+} 

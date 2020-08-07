@@ -1,0 +1,29 @@
+.topbar_wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 1.16rem;
+  padding: 0 0.21333rem 0 0.32rem;
+  align-items: center;
+  background-color: #fafafa;
+  border-bottom: 1PX solid rgb(237, 237, 237);
+}
+
+.bar_icon_wrapper {
+  display: flex;
+  width: 0.63333rem;
+  height: 0.63333rem;
+}
+
+.margin_right {
+  margin-right: .3rem;
+}
+
+.title_content {
+  display: flex;
+  flex: 1;
+  height: .63333rem;
+  text-align: center;
+  line-height: .63333rem;
+  font-weight: 1000;
+  font-size: .56666rem;
+}

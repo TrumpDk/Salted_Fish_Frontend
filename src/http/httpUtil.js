@@ -19,9 +19,12 @@ instance.interceptors.response.use(response => {
 });
 
 export default class HttpUtil {
-    static get(url, params = {}) {
+    static get(url, params = undefined) {
+        if (params) {
+            url += params
+        }
         return new Promise((resolve, reject) => {
-            instance.get(url, { params }).then(result => {
+            instance.get(url).then(result => {
                 resolve(result.data);
             }).catch(err => {
                 reject(err);

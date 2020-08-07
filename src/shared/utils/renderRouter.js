@@ -17,7 +17,7 @@ const RenderRoutes = ({ routers, authed }) => {
             exact
             render={(props) => {
                 if (!route.requiresAuth || authed) {
-                    return <route.component {...props} />
+                    return <route.component {...props} routes={route.routes} />
                 }
                 return <Redirect to={{ pathname: '/LogIn', state: { from: props.location.pathname } }} />
             }}

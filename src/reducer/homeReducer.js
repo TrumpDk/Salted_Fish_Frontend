@@ -1,17 +1,17 @@
 import ActionList from '../action/actionsList';
 
 const initState = {
-    index: 0,
+    // index: 0,
+    isLoaded: false,
     dataArray: []
 }
 
 const fetchHomeData = (state = initState, action) => {
     const { type, param } = action;
+    const dataArray = param;
     switch (type) {
         case ActionList.Home_Data_Request_Successful:
-            const index = state.index + 6;
-            const dataArray = [...state.dataArray, ...param];
-            return { ...state, index, dataArray }
+            return { ...state, dataArray, isLoaded: true }
         case ActionList.Home_Data_Request_Failed:
             return state;
         default:

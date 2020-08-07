@@ -1,0 +1,338 @@
+.item_detail_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.item_detail_body {
+    flex: 1;
+    overflow-x: auto;
+    background: white;
+}
+
+.index_content {
+    display: inline-block;
+    width: .32rem;
+    height: .32rem;
+    border: 1PX solid #DD1A21;
+    border-radius: 50%;
+    text-align: center;
+    line-height: .32rem;
+    font-size: .26667rem;
+    color: #DD1A21;
+    font-family: PingFang SC;
+    font-weight: 700;
+    margin-right: .10667rem;
+    vertical-align: middle;
+}
+
+.recommandBanner {
+    line-height: .8rem;
+    background: #FAFAFA;
+    border-radius: .05333rem;
+    padding: 0 .2333rem;
+}
+
+.item_title {
+    font-size: .42667rem;
+    color: #333;
+    line-height: .64rem;
+    margin-bottom: .45333rem;
+    font-weight: 700;
+}
+
+.recommend_desc {
+    font-size: .32rem;
+    line-height: .48rem;
+    color: #333;
+    font-weight: lighter;
+}
+
+.recommendReason {
+    display: inline-block;
+    height: .48rem;
+    line-height: .48rem;
+    vertical-align: middle;
+}
+
+.item_spec_policy {
+    border-top: 0.26667rem solid rgb(244, 244, 244);
+    background: white;
+}
+
+.item_attr {
+    padding-left: .4rem;
+    font-size: .37333rem;
+    color: #333;
+    line-height: 1.38667rem;
+}
+
+.item_spec_policy_content {
+    border-bottom: 1PX solid #d9d9d9;
+}
+
+.item_detail_content {
+    padding: .34667rem .4rem .48rem .4rem;
+    box-sizing: border-box;
+    background: white;
+}
+
+.item_detail_wrapper>p {
+    margin: 0;
+    width: 100%;
+}
+
+.item_icon {
+    width: 0.43333rem;
+    height: 0.43333rem;
+    margin-right: .24rem;
+}
+
+.item_detail_wrapper>p>img {
+    width: 100%;
+    vertical-align: top;
+}
+
+.policy_wrapper {
+    display: flex;
+    align-items: center;
+    padding: .32rem 0 .10667rem .4rem;
+}
+
+.item_policy_right {
+    flex: 1;
+}
+
+.item_policy_left {
+    align-self: flex-start;
+}
+
+.policy_content {
+    float: left;
+    margin: 0 .23333rem .1333rem 0;
+    position: relative;
+    padding-left: .10667rem;
+}
+
+.policy_content::before {
+    content: '';
+    position: absolute;
+    width: .10667rem;
+    height: .10667rem;
+    background: #DD1A21;
+    border-radius: 100%;
+    left: 0;
+    top: .13333rem;
+}
+
+.item_attr_wrapper {
+    margin-top: .4rem;
+    background: white;
+    padding: .4rem;
+}
+
+.item_attr_title {
+    padding: .53333rem 0 .32rem;
+    font-size: .37333rem;
+    line-height: 1;
+}
+
+.item_attr_content {
+    display: flex;
+    padding: .1333rem .2333rem .1333rem 0;
+    line-height: 1.5;
+    background-image: linear-gradient(to right, #919191 33%, rgba(255, 255, 255, 0) 0);
+    background-position: top;
+    background-size: 12PX 1PX;
+    background-repeat: repeat-x;
+}
+
+.attr_name {
+    width: 1.97333rem;
+    position: relative;
+    color: #999;
+}
+
+.attr_desc {
+    flex: 1;
+}
+
+.panel_service {
+    padding-left: .4rem;
+    height: 1.17333rem;
+    text-align: center;
+    line-height: 1.17333rem;
+    font-size: .42667rem;
+    color: #333;
+    border-bottom: 1PX solid #d9d9d9;
+    margin-bottom: .53333rem;
+}
+
+.panel_content {
+    padding: 0 .4rem 1.6rem .4rem;
+}
+
+.policy_title_detail {
+    margin-bottom: .6rem;
+    position: relative;
+    padding-left: .4rem;
+}
+
+.policy_title {
+    font-size: .37333rem;
+    color: #333;
+    height: .37333rem;
+    line-height: .37333rem;
+    margin-bottom: .21333rem;
+}
+
+.policy_content_detail {
+    font-size: .32rem;
+    color: #7f7f7f;
+    padding-left: .4rem;
+}
+
+.policy_wrapper_detail {
+    margin-bottom: .6rem;
+    position: relative;
+}
+
+.policy_title_detail::before {
+    content: '';
+    position: absolute;
+    width: .10667rem;
+    height: .10667rem;
+    background: #DD1A21;
+    border-radius: 100%;
+    left: 0;
+    top: .13333rem;
+}
+
+.get_back {
+    position: fixed;
+    background: #FAFAFA;
+    height: 1.38667rem;
+    line-height: 1.38667rem;
+    text-align: center;
+    border-top: 1PX solid #d9d9d9;
+    bottom: 0;
+    width: 100%;
+}
+
+.item_detail_body .slider-list {
+    height: 100vw !important;
+}
+
+.dt_paramselect {
+    padding: .44rem .4rem 1.68rem;
+}
+
+.dt_paramselect .info_con {
+    height: 2.64rem;
+    margin-bottom: .56rem;
+}
+
+.content_left {
+    float: left;
+    width: 2.61333rem;
+    border-radius: .04rem;
+    margin-right: -2.61333rem;
+    background-color: #f4f4f4;
+}
+
+.content_img {
+    width: 100%;
+    height: auto;
+}
+
+.content_right {
+    margin-left: 2.88rem;
+    line-height: 1;
+    float: left;
+    vertical-align: bottom;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.price_choice_content {}
+
+.price_content {
+    font-size: .37333rem;
+    padding-bottom: .05333rem;
+    line-height: .53333rem;
+    color: red;
+}
+
+.sku_content {
+    font-size: .37333rem;
+    padding-bottom: .05333rem;
+    line-height: .53333rem;
+}
+
+.spec_title {
+    line-height: .53333rem;
+    font-size: .37333rem;
+    padding-bottom: .16rem;
+}
+
+.spec_tab {
+    position: relative;
+    vertical-align: middle;
+    border-radius: 4px;
+    padding: 0 .32rem;
+    font-size: .37333rem;
+    line-height: .96rem;
+    height: .96rem;
+    margin-right: .4rem;
+    margin-bottom: .26667rem;
+    border: 1PX solid #7f7f7f;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.spec_con_wrapper {
+    padding-bottom: .26667rem;
+}
+
+.select_content {
+    display: inline-block;
+    background-position: 0 -12.42667rem;
+    width: 4.14333rem;
+    height: .93333rem;
+}
+
+.textWrap {
+    display: inline-block;
+    width: 1.72rem;
+    line-height: .88rem;
+}
+
+.textWrap>input {
+    height: .88rem;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    padding: 0;
+    border: 1PX solid #7f7f7f;
+}
+
+.select_reduce,
+.select_add {
+    vertical-align: top;
+    display: inline-block;
+    width: 1.2rem;
+    height: .88rem;
+    text-align: center;
+    line-height: .88rem;
+}
+
+.select_reduce {
+    border: 1PX solid #7f7f7f;
+    border-right: 0;
+}
+
+.select_add {
+    border: 1PX solid #7f7f7f;
+    border-left: 0;
+}

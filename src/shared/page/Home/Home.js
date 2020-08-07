@@ -5,12 +5,13 @@ import * as HomeAction from '../../../action/Home'
 import { connect } from 'react-redux'
 import NavBar from '../../component/NavBar/NavBar'
 import Observer from '../../component/ComponentObserveble/ComponentObserveble'
-import Gallery from '../../component/Gallery/Gallery'
 import fish from '../../../assets/img/salted_fish.png'
 import { Carousel } from 'antd-mobile'
 import { Link } from 'react-router-dom'
 import * as checkLogin from '../../../action/checkLogin'
 import SearchBar from '../../component/SearchBar/SearchBar'
+import BarContent from '../../component/SkeletonContent/BarContent/BarContent'
+import ImgContent from '../../component/SkeletonContent/baseContent/ImgContent'
 
 const navBarList = [
     { name: '运动', icon: '#iconyundong', key: 1 },
@@ -34,12 +35,12 @@ class Home extends React.Component {
         this.fetchItemData(0);
     }
 
-    fetchItemData(index, pageSize = 6) {
-        this.props.HomeAction.fetchCommodityData({ startIndex: index, pageSize: pageSize });
+    fetchItemData() {
+        this.props.HomeAction.fetchCommodityData();
     }
 
     render() {
-        const { dataArray } = this.props.commodityList;
+        const { dataArray, isLoaded } = this.props.commodityList;
         const { isLogin } = this.props.loginStatus;
         return (
             <Fragment>
@@ -55,26 +56,59 @@ class Home extends React.Component {
                     }
                 </div>
                 <div className="Header_Wrapper">
-                    <NavBar barItems={navBarList} iconContentStyle={'home_bar'} iconOjbect={'icon_ojbect'} iconSpanStyle={'home_bar_span'} />
+                    {
+                        isLoaded ? <NavBar barItems={navBarList} iconContentStyle={'home_bar'} iconOjbect={'icon_ojbect'} iconSpanStyle={'home_bar_span'} /> : <BarContent />
+                    }
                 </div>
-                <Carousel autoplay infinite className="Home_Carousel">
-                    {gallery.map(item => (
-                        <div className="goodsBannerItem" key={item.id}>
-                            <img src={item.img_url} alt="load img failed" />
-                        </div>
-                    ))}
-                </Carousel>
+                {
+                    isLoaded ? <Carousel autoplay infinite className="Home_Carousel">
+                        {gallery.map(item => (
+                            <div className="goodsBannerItem" key={item.id}>
+                                <img src={item.img_url} alt="load img failed" />
+                            </div>
+                        ))}
+                    </Carousel> : <ImgContent propStyle={{ height: '3.94667rem' }} />
+                }
                 <div className="hot_goods">
                     <div className="title_content">
                         <span className="title_container">猜你喜欢</span>
                     </div>
-                    <div className="item_content">
-                        {dataArray.map((item, index) =>
-                            <Observer key={item.items_Id} info={{ item, length: dataArray.length, index, nextPage: this.props.commodityList.index }} fetchNextPageData={this.props.HomeAction.fetchCommodityData}>
-                                {(isVisible, item, index) => <Gallery isVisible={isVisible} item={item} index={index} />}
-                            </Observer>
-                        )}
-                    </div>
+                    {
+                        isLoaded ?
+                            <div className="item_content">
+                                <Observer imgList={dataArray} />
+                            </div> :
+                            <div>
+                                <div className="pre_content_wrapper">
+                                    <ImgContent propStyle={{ width: '100%', height: '4.8rem' }} />
+
+                                    <div style={{ marginTop: '.5rem' }}>
+                                        <ImgContent propStyle={{ width: '100%', height: '.8rem' }} />
+                                    </div>
+                                </div>
+                                <div className="pre_content_wrapper">
+                                    <ImgContent propStyle={{ width: '100%', height: '4.8rem' }} />
+
+                                    <div style={{ marginTop: '.5rem' }}>
+                                        <ImgContent propStyle={{ width: '100%', height: '.8rem' }} />
+                                    </div>
+                                </div>
+                                <div className="pre_content_wrapper">
+                                    <ImgContent propStyle={{ width: '100%', height: '4.8rem' }} />
+
+                                    <div style={{ marginTop: '.5rem' }}>
+                                        <ImgContent propStyle={{ width: '100%', height: '.8rem' }} />
+                                    </div>
+                                </div>
+                                <div className="pre_content_wrapper">
+                                    <ImgContent propStyle={{ width: '100%', height: '4.8rem' }} />
+
+                                    <div style={{ marginTop: '.5rem' }}>
+                                        <ImgContent propStyle={{ width: '100%', height: '.8rem' }} />
+                                    </div>
+                                </div>
+                            </div>
+                    }
                 </div>
             </Fragment>
         )
