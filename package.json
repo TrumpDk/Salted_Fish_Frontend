@@ -50,7 +50,7 @@
   "dependencies": {
     "antd-mobile": "^2.3.1",
     "autoprefixer": "^9.8.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "express": "^4.16.4",
     "fibers": "^5.0.0",
     "node-sass": "^4.13.1",
